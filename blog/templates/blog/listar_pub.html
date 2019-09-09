@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    {% for p in pubs %}
-    <div class="">
-      <p>Publicado: {{p.published_date}}</p>
-      <h2><a href="#">{{p.title}}</a></h2>
-      <p>{{p.texts}}</p>
+{% extends 'blog/base.html' %}
+{% block content %}
+  {% for p in posts %}
+    <div class="post">
+      <div class="date">
+          <p>Publicado: {{p.published_date}}</p>
+      </div>
+      <h1><a href="{% url 'detalle_pub' pk=p.pk %}">{{p.title}}</a></h1>
+      <p>{{p.text|linebreaksbr}}</p>
     </div>
-    {% endfor %}
-  </body>
-</html>
+  {% endfor %}
+{% endblock %}
